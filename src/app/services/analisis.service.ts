@@ -15,7 +15,8 @@ export class AnalisisService {
   enviarArchivo(formData: FormData) : Observable<any>{
     const url = `${URL}${ANALISIS}`;
     console.log(formData);
+    var type = formData.get('vuelta') == '1' ? 'json' : 'blob'
     return this.http
-      .post<any>(url, formData);
+      .post<any>(url, formData, {responseType: type as 'json'});
   }
 }

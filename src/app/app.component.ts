@@ -16,7 +16,8 @@ export class AppComponent {
   title = 'DataMining';
 
   formData: FormData = new FormData();
-  pandas: any
+  pandasTabla: any
+  imagenAMostrar: any
 
   analisisForm = this._formBuilder.group({
     tipo: ['', Validators.required],    
@@ -33,7 +34,21 @@ export class AppComponent {
     console.log(this.formData.get('file'));
     this._analisisService.enviarArchivo(this.formData)
     .subscribe(r =>{
-      this.pandas = r;
+      this.pandasTabla = r[0];
+      console.log(r);
+      this.formData.set('vuelta', '2')
+      this._analisisService.enviarArchivo(this.formData)
+      .subscribe(q =>{
+        console.log(q)
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+          this.imagenAMostrar = reader.result;
+        }, false);
+
+        if (q) {
+          reader.readAsDataURL(q);
+         }
+      });
     });
   }
 
@@ -43,6 +58,7 @@ export class AppComponent {
       this.formData = new FormData();
       this.formData.append('file', file);
       this.formData.append('tipo', this.analisisForm.value.tipo);
+      this.formData.append('vuelta', '1');
     }
   }
 
