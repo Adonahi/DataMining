@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col"><button class="btn btn-warning" routerLink="/">Regresar</button></div>
+    </div>
+    <br>
+    <h3>Importación de los datos</h3>
+    <div class="row" style="height: 70vh;">
+        <span class="col h-100 table-responsive" style="overflow-y: scroll;" [(innerHTML)]="pandasTabla"></span>
+    </div>
+    <h3>Descripción de la estructura de los datos</h3>
+    <h5>Forma (dimensiones) del DataFrame</h5>
+    <div class="row">
+        <p [innerHTML]="dimensiones"></p>
+    </div>
+    <h5>Tipos de datos (variables)</h5>
+    <div class="row">
+        <p [innerHTML]="tipoDatos"></p>
+    </div>
+    <h3>Identificación de datos faltantes</h3>
+    <div class="row">
+        <p [innerHTML]="faltantes"></p>
+    </div>
+    <h3>Detección de valores atípicos</h3>
+    <h5>Distribución de variables numéricas</h5>
+    <div class="row">
+        <img [src]="imagenAMostrar" alt="No hay imagen ):">
+    </div>
+</div>
